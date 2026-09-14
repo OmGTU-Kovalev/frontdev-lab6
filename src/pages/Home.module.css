@@ -1,0 +1,96 @@
+.hero {
+  text-align: center;
+  padding: 48px 0 28px;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2.2rem, 7vw, 3.6rem);
+  letter-spacing: -0.5px;
+}
+
+.accent {
+  color: var(--primary-dark);
+}
+
+.subtitle {
+  max-width: 620px;
+  margin: 14px auto 0;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  padding: 12px 26px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.15s ease;
+}
+
+.primaryBtn {
+  background: var(--primary);
+  color: #fff;
+}
+
+.primaryBtn:hover {
+  background: var(--primary-dark);
+}
+
+.secondaryBtn {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.secondaryBtn:hover {
+  transform: translateY(-2px);
+}
+
+.cotd {
+  margin-top: 24px;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+}
+
+.figure {
+  margin: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px;
+  box-shadow: var(--shadow);
+}
+
+.figure figcaption {
+  padding: 10px 12px 6px;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+.cotdImg {
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 4px);
+}
+
+code {
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1px 6px;
+  font-size: 0.85em;
+}
