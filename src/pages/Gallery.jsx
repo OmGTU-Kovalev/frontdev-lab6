@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import Modal from '../components/Modal';
 import Loader from '../components/Loader';
 import FavoriteButton from '../components/FavoriteButton';
 import useFavorites from '../hooks/useFavorites';
@@ -13,6 +14,7 @@ export default function Gallery() {
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState(null);
+  const [selectedId, setSelectedId] = useState(null);
   const { isFavorite, toggleFavorite } = useFavorites();
 
   const fetchImages = useCallback(async (append, offset) => {
@@ -40,6 +42,8 @@ export default function Gallery() {
     fetchImages(true, offset);
   };
 
+  const selectedCat = cats.find((cat) => cat.id === selectedId) || null;
+
   return (
     <div className="page">
       <div className="container">
@@ -58,7 +62,9 @@ export default function Gallery() {
             <div className={styles.grid}>
               {cats.map((cat) => (
                 <figure key={cat.id} className={styles.item}>
-                  <img src={cat.url} alt="Котик" className={styles.photo} loading="lazy" />
+                  <button type="button" className={styles.photoBtn} onClick={() => setSelectedId(cat.id)}>
+                    <img src={cat.url} alt="Котик" className={styles.photo} loading="lazy" />
+                  </button>
                   <div className={styles.overlay}>
                     <FavoriteButton cat={cat} isFavorite={isFavorite} onToggle={toggleFavorite} size="small" />
                   </div>
@@ -73,6 +79,19 @@ export default function Gallery() {
           </>
         )}
       </div>
+
+      {selectedCat && (
+        <Modal onClose={() => setSelectedId(null)}>
+          <img src={selectedCat.url} alt="Котик" className={styles.modalImage} />
+          <div className={styles.modalActions}>
+            <FavoriteButton
+              cat={selectedCat}
+              isFavorite={isFavorite}
+              onToggle={toggleFavorite}
+            />
+          </div>
+        </Modal>
+      )}
     </div>
   );
 }
